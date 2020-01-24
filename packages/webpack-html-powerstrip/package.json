@@ -5,7 +5,7 @@
   "author": "izumin5210 <m@izum.in>",
   "homepage": "https://github.com/izumin5210/react-app-constants#readme",
   "license": "MIT",
-  "main": "lib/webpack-html-powerstrip.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -26,5 +26,12 @@
   },
   "bugs": {
     "url": "https://github.com/izumin5210/react-app-constants/issues"
+  },
+  "dependencies": {
+    "deepmerge": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/html-webpack-plugin": "^3.2.1",
+    "@types/webpack": "^4.41.3"
   }
 }
