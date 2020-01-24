@@ -21,6 +21,7 @@
     "url": "git+https://github.com/izumin5210/react-app-constants.git"
   },
   "scripts": {
+    "build": "tsc -b",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {

@@ -5,5 +5,19 @@
     "frolint": "^0.8.10",
     "lerna": "^3.20.2",
     "typescript": "^3.7.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "wantedly-typescript"
+    ],
+    "parserOptions": {
+      "project": [
+        "./tsconfig.json",
+        "./tsconfig.eslint.json"
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "frolint --branch master"
   }
 }
