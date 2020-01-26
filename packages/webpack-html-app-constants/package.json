@@ -25,5 +25,15 @@
   },
   "bugs": {
     "url": "https://github.com/izumin5210/react-app-constants/issues"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/js-base64": "^2.3.1",
+    "@types/webpack": "^4.41.3"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "js-base64": "^2.5.1",
+    "webpack-html-powerstrip": "^0.0.0"
   }
 }
