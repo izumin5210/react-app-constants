@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`webpack-html-powerstrip generates multiple htmls: index.production.html 1`] = `
+"<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=\\"UTF-8\\">
+    <title>Webpack App</title>
+  </head>
+  <body>
+  <script type=\\"text/javascript\\" src=\\"main.js\\"></script></body>
+</html>"
+`;
+
+exports[`webpack-html-powerstrip generates multiple htmls: index.qa.html 1`] = `
+"<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=\\"UTF-8\\">
+    <title>Webpack App</title>
+  </head>
+  <body>
+  <script type=\\"text/javascript\\" src=\\"main.js\\"></script></body>
+</html>"
+`;
+
+exports[`webpack-html-powerstrip generates multiple htmls: index.staging.html 1`] = `
+"<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=\\"UTF-8\\">
+    <title>Webpack App</title>
+  </head>
+  <body>
+  <script type=\\"text/javascript\\" src=\\"main.js\\"></script></body>
+</html>"
+`;
