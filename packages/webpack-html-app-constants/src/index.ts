@@ -1,12 +1,24 @@
 /* eslint eqeqeq: ["error", "always", {"null": "ignore"}] */
 
 import dotenv from "dotenv";
+import * as fs from "fs";
 import { Base64 } from "js-base64";
+import { join } from "path";
 import webpack from "webpack";
 import {
   Overrider,
   rewire as rewireToPowerstrip,
 } from "webpack-html-powerstrip";
+
+interface GlobalConfig {
+  dir: string;
+  fs: Pick<webpack.InputFileSystem, "readFileSync">;
+}
+
+export const config: GlobalConfig = {
+  dir: fs.realpathSync(process.cwd()),
+  fs,
+};
 
 export interface Params {
   variations: string[];
@@ -38,15 +50,18 @@ function createOverrider(load: Loader, transformers: Transformer[]): Overrider {
     }
     const cfg = Object.fromEntries(entries);
 
-    return { "app-constants": Base64.encode(JSON.stringify(cfg)) };
+    const meta = { "app-constants": Base64.encode(JSON.stringify(cfg)) };
+    return { meta };
   };
 }
 
 const loadFromDotenv: Loader = variation => {
-  const { parsed } = dotenv.config({
-    path: variation == null ? ".env" : `.env.${variation}`,
-  });
-  return Object.entries(parsed || {});
+  const path = join(
+    config.dir,
+    variation == null ? ".env" : `.env.${variation}`
+  );
+  const cfg = dotenv.parse(config.fs.readFileSync(path)) || {};
+  return Object.entries(cfg);
 };
 
 const onlyReactApp: Transformer = (consts, _) =>
