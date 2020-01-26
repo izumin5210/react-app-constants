@@ -37,7 +37,7 @@ function setup(): {
   };
 }
 
-describe("webpack-html-powerstrip", () => {
+describe("webpack-html-app-constants", () => {
   it("generates multiple htmls", done => {
     const { fs, createDotenv, expectToMatchSnapshot } = setup();
     createDotenv("qa", [
