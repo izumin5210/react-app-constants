@@ -4,7 +4,7 @@ import deepmerge from "deepmerge";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as Webpack from "webpack";
 
-type Overrider = (variation?: string) => HtmlWebpackPlugin.Options;
+export type Overrider = (variation?: string) => HtmlWebpackPlugin.Options;
 
 export interface Params {
   variations: string[];

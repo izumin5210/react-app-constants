@@ -1,5 +1,8 @@
 import * as webpack from "webpack";
-import WebpackHtmlPowerstrip, { Params } from "./WebpackHtmlPowerstrip";
+import WebpackHtmlPowerstrip, {
+  Overrider,
+  Params,
+} from "./WebpackHtmlPowerstrip";
 
 function rewire(
   config: webpack.Configuration,
@@ -9,4 +12,4 @@ function rewire(
   return new WebpackHtmlPowerstrip(params).rewire(config, env);
 }
 
-export { WebpackHtmlPowerstrip, rewire };
+export { WebpackHtmlPowerstrip, rewire, Params, Overrider };
