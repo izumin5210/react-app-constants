@@ -6,6 +6,7 @@
   "homepage": "https://github.com/izumin5210/react-app-constants#readme",
   "license": "MIT",
   "main": "lib/index.js",
+  "modlue": "lib-module/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -21,8 +22,10 @@
     "url": "git+https://github.com/izumin5210/react-app-constants.git"
   },
   "scripts": {
-    "build": "tsc --build",
-    "clean": "rimraf lib",
+    "build": "yarn build:commonjs && yarn build:module",
+    "build:commonjs": "tsc --build",
+    "build:module": "tsc --build tsconfig.module.json",
+    "clean": "rimraf lib lib-module",
     "prepublishOnly": "yarn build",
     "test": "jest"
   },

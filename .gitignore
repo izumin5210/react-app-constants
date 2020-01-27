@@ -111,3 +111,4 @@ dist
 
 ### misc
 packages/*/lib/
+packages/*/lib-module/
