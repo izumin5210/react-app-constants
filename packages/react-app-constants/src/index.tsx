@@ -5,7 +5,7 @@ import React, { createContext, useContext, Context } from "react";
 
 const metaName = "app-constants";
 
-export default function createConstantsContext<T>(): {
+export function createConstantsContext<T>(): {
   context: Context<T | null>;
   useConstants: () => T;
   ConstantsProvider: React.FC<{ value?: T; loader?: () => T }>;

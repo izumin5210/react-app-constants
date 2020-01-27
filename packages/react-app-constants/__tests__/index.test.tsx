@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import { Base64 } from "js-base64";
 import "@testing-library/jest-dom/extend-expect";
 
-import createConstantsContext from "../src";
+import { createConstantsContext } from "../src";
 
 describe("react-app-constants", () => {
   it("sets constant from initial props", () => {
