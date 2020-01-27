@@ -21,8 +21,9 @@
     "url": "git+https://github.com/izumin5210/react-app-constants.git"
   },
   "scripts": {
-    "build": "tsc -b",
-    "test": "jest"
+    "build": "tsc --build --clean",
+    "prepublishOnly": "yarn build",
+    "clean": "rm"
   },
   "bugs": {
     "url": "https://github.com/izumin5210/react-app-constants/issues"

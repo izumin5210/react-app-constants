@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2016",
     "module": "CommonJS",
-    "lib": ["ESNext"],
+    "lib": ["DOM", "DOM.Iterable", "ESnext"],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
