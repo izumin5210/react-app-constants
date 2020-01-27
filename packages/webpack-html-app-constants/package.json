@@ -1,6 +1,6 @@
 {
   "name": "webpack-html-app-constants",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "> TODO: description",
   "author": "izumin5210 <m@izum.in>",
   "homepage": "https://github.com/izumin5210/react-app-constants#readme",
@@ -44,6 +44,6 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "js-base64": "^2.5.1",
-    "webpack-html-powerstrip": "^0.0.3"
+    "webpack-html-powerstrip": "^0.0.4"
   }
 }
