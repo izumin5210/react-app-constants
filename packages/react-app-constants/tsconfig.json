@@ -7,7 +7,7 @@
     "rootDir": "./src",
     "lib": ["DOM", "DOM.Iterable", "ESnext"],
     "target": "ES2017",
-    "module": "ES2017",
+    "module": "ES2015",
     "jsx": "react"
   },
   "include": ["./src/**/*"]

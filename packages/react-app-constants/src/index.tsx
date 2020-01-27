@@ -8,18 +8,18 @@ const metaName = "app-constants";
 export default function createConstantsContext<T>(): {
   context: Context<T | null>;
   useConstants: () => T;
-  ConstantsProvider: React.FC<{ constants?: T }>;
+  ConstantsProvider: React.FC<{ value?: T; loader?: () => T }>;
 } {
   const context = createContext<T | null>(null);
   const useConstants = createHook(context);
 
-  const ConstantsProvider: React.FC<{ constants?: T }> = ({
+  const ConstantsProvider: React.FC<{ value?: T; loader?: () => T }> = ({
     children,
-    constants,
-  }) => {
-    const value = constants || loadConstants<T>();
-    return <context.Provider value={value}>{children}</context.Provider>;
-  };
+    value,
+    loader = loadConstants,
+  }) => (
+    <context.Provider value={value || loader()}>{children}</context.Provider>
+  );
 
   return { context, ConstantsProvider, useConstants };
 }
