@@ -27,6 +27,7 @@
     "build:module": "tsc --build tsconfig.module.json",
     "clean": "rimraf lib lib-module",
     "prepublishOnly": "yarn build",
+    "coverage": "yarn test --coverage --mapCoverage",
     "test": "jest"
   },
   "bugs": {
