@@ -1,32 +1,35 @@
 /* eslint eqeqeq: ["error", "always", {"null": "ignore"}] */
 
-import { Base64 } from "js-base64";
-import React, { createContext, useContext, Context } from "react";
+import React, { createContext, useContext } from "react";
+import { loadConstants } from "./load";
 
-const metaName = "app-constants";
+type Context<T> = React.Context<T | null>;
+type Provider<T> = React.FC<{ value?: T; loader?: () => T }>;
 
 export function createConstants<T>(): {
-  ConstantsContext: Context<T | null>;
+  ConstantsContext: Context<T>;
+  ConstantsProvider: Provider<T>;
   useConstants: () => T;
-  ConstantsProvider: React.FC<{ value?: T; loader?: () => T }>;
 } {
   const ConstantsContext = createContext<T | null>(null);
-  const useConstants = createHook(ConstantsContext);
 
-  const ConstantsProvider: React.FC<{ value?: T; loader?: () => T }> = ({
+  return {
+    ConstantsContext,
+    ConstantsProvider: createProvider(ConstantsContext),
+    useConstants: createHook(ConstantsContext),
+  };
+}
+
+function createProvider<T>(ctx: Context<T>) {
+  const ConstantsProvider: Provider<T> = ({
     children,
     value,
     loader = loadConstants,
-  }) => (
-    <ConstantsContext.Provider value={value || loader()}>
-      {children}
-    </ConstantsContext.Provider>
-  );
-
-  return { ConstantsContext, ConstantsProvider, useConstants };
+  }) => <ctx.Provider value={value || loader()}>{children}</ctx.Provider>;
+  return ConstantsProvider;
 }
 
-function createHook<T>(ctx: Context<T | null>): () => T {
+function createHook<T>(ctx: Context<T>): () => T {
   return () => {
     const consts = useContext(ctx);
     if (consts == null) {
@@ -34,28 +37,4 @@ function createHook<T>(ctx: Context<T | null>): () => T {
     }
     return consts;
   };
-}
-
-function loadConstants<T>(): T {
-  if (typeof window !== "undefined" && typeof window.document !== "undefined") {
-    return loadConstantsFromMeta();
-  }
-  return loadConstantsFromEnv();
-}
-
-function loadConstantsFromMeta<T>(): T {
-  const v = document
-    .querySelector(`meta[name="${metaName}"]`)
-    ?.getAttribute("content");
-  if (v == null) {
-    throw new Error(`meta[name="${metaName}"] is not found or has no contents`);
-  }
-  return JSON.parse(Base64.decode(v)) as T;
-}
-
-function loadConstantsFromEnv<T>(): T {
-  const entries = Object.entries(process.env)
-    .filter(([k, _]) => k.startsWith("REACT_APP_"))
-    .map(([k, v]) => [k.replace(/^REACT_APP_/, ""), v]);
-  return Object.fromEntries(entries) as T;
 }
