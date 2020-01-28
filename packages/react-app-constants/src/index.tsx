@@ -5,23 +5,25 @@ import React, { createContext, useContext, Context } from "react";
 
 const metaName = "app-constants";
 
-export function createConstantsContext<T>(): {
-  context: Context<T | null>;
+export function createConstants<T>(): {
+  ConstantsContext: Context<T | null>;
   useConstants: () => T;
   ConstantsProvider: React.FC<{ value?: T; loader?: () => T }>;
 } {
-  const context = createContext<T | null>(null);
-  const useConstants = createHook(context);
+  const ConstantsContext = createContext<T | null>(null);
+  const useConstants = createHook(ConstantsContext);
 
   const ConstantsProvider: React.FC<{ value?: T; loader?: () => T }> = ({
     children,
     value,
     loader = loadConstants,
   }) => (
-    <context.Provider value={value || loader()}>{children}</context.Provider>
+    <ConstantsContext.Provider value={value || loader()}>
+      {children}
+    </ConstantsContext.Provider>
   );
 
-  return { context, ConstantsProvider, useConstants };
+  return { ConstantsContext, ConstantsProvider, useConstants };
 }
 
 function createHook<T>(ctx: Context<T | null>): () => T {

@@ -3,16 +3,14 @@ import { render } from "@testing-library/react";
 import { Base64 } from "js-base64";
 import "@testing-library/jest-dom/extend-expect";
 
-import { createConstantsContext } from "../src";
+import { createConstants } from "../src";
 
 describe("react-app-constants", () => {
   it("sets constant from initial props", () => {
     type Constants = {
       FOO: string;
     };
-    const { useConstants, ConstantsProvider } = createConstantsContext<
-      Constants
-    >();
+    const { useConstants, ConstantsProvider } = createConstants<Constants>();
 
     const initialConsts: Constants = {
       FOO: "barbaz",
@@ -35,9 +33,7 @@ describe("react-app-constants", () => {
     type Constants = {
       FOO: string;
     };
-    const { useConstants, ConstantsProvider } = createConstantsContext<
-      Constants
-    >();
+    const { useConstants, ConstantsProvider } = createConstants<Constants>();
 
     const initialConsts: Constants = {
       FOO: "barbaz",
