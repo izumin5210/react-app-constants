@@ -1,11 +1,24 @@
 # react-app-constants
 
+Build variants for React apps
+
+
 [![CI](https://github.com/izumin5210/react-app-constants/workflows/CI/badge.svg)](https://github.com/izumin5210/react-app-constants/actions?query=branch%3Amaster+workflow%3ACI)
 [![codecov](https://codecov.io/gh/izumin5210/react-app-constants/branch/master/graph/badge.svg)](https://codecov.io/gh/izumin5210/react-app-constants)
 ![GitHub](https://img.shields.io/github/license/izumin5210/react-app-constants)
 
 
+| Name | Description | Version |
+| ------- | ----------- |:-------:|
+| [**react-app-constants**](./packages/react-app-constants) | Get constants with a hook | [![npm](https://img.shields.io/npm/v/react-app-constants)](https://www.npmjs.com/package/react-app-constants) |
+| [**webpack-html-app-constants**](./packages/webpack-html-app-constants) | Inject application constants to HTML | [![npm](https://img.shields.io/npm/v/webpack-html-app-constants)](https://www.npmjs.com/package/webpack-html-app-constants) |
+| [**webpack-html-powerstrip**](./packages/webpack-html-powerstrip) | Create different version `index.html`s | [![npm](https://img.shields.io/npm/v/webpack-html-powerstrip)](https://www.npmjs.com/package/webpack-html-powerstrip) |
+ 
+
 ## Get started
+### Requirements
+- [**react-app-rewired**](https://github.com/timarney/react-app-rewired) if you create the app with create-react-app
+
 ### Configure webpack and constants
 
 ```console
