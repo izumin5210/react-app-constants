@@ -4,19 +4,19 @@ import deepmerge from "deepmerge";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as Webpack from "webpack";
 
-export type Overrider = (variation?: string) => HtmlWebpackPlugin.Options;
+export type Overrider = (variant?: string) => HtmlWebpackPlugin.Options;
 
 export interface Params {
-  variations: string[];
+  variants: string[];
   overrider: Overrider;
 }
 
 export default class WebpackHtmlPowerstrip {
-  private variations: string[];
+  private variants: string[];
   private overrider: Overrider;
 
-  constructor({ variations, overrider }: Params) {
-    this.variations = variations;
+  constructor({ variants, overrider }: Params) {
+    this.variants = variants;
     this.overrider = overrider;
   }
 
@@ -34,9 +34,9 @@ export default class WebpackHtmlPowerstrip {
     }
 
     if (env === "production") {
-      for (const variation of this.variations) {
+      for (const variant of this.variants) {
         config.plugins.push(
-          this.createHtmlWebpackPlugin(basePlugin, variation)
+          this.createHtmlWebpackPlugin(basePlugin, variant)
         );
       }
     } else {
@@ -62,10 +62,10 @@ export default class WebpackHtmlPowerstrip {
     return plugin;
   }
 
-  private createHtmlWebpackPlugin(base: Webpack.Plugin, variation?: string) {
+  private createHtmlWebpackPlugin(base: Webpack.Plugin, variant?: string) {
     return this.cloneHtmlWebpackPlugin(base, {
-      filename: variation == null ? "index.html" : `index.${variation}.html`,
-      ...this.overrider(variation),
+      filename: variant == null ? "index.html" : `index.${variant}.html`,
+      ...this.overrider(variant),
     });
   }
 

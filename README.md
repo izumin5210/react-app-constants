@@ -33,8 +33,8 @@ const {
 } = require("webpack-html-app-constants");
 
 module.exports = function override(config, env) {
-  const variations = ["production", "qa"];
-  return rewireWithAppConstants(config, env, { variations });
+  const variants = ["production", "qa"];
+  return rewireWithAppConstants(config, env, { variants });
 };
 ```
 

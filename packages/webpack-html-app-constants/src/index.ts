@@ -5,10 +5,7 @@ import * as fs from "fs";
 import { Base64 } from "js-base64";
 import { join } from "path";
 import webpack from "webpack";
-import {
-  Overrider,
-  rewire as rewireToPowerstrip,
-} from "webpack-html-powerstrip";
+import { Overrider, rewire as rewireToPowerstrip } from "webpack-html-powerstrip";
 
 interface GlobalConfig {
   dir: string;
@@ -21,7 +18,7 @@ export const config: GlobalConfig = {
 };
 
 export interface Params {
-  variations: string[];
+  variants: string[];
   loader?: Loader;
   transformers?: Transformer[];
 }
@@ -29,22 +26,22 @@ export interface Params {
 export function rewire(
   config: webpack.Configuration,
   env: string,
-  { loader = loadFromDotenv, transformers = [onlyReactApp], variations }: Params
+  { loader = loadFromDotenv, transformers = [onlyReactApp], variants }: Params
 ) {
   const overrider = createOverrider(loader, transformers);
   return rewireToPowerstrip(config, env, {
-    variations,
+    variants,
     overrider,
   });
 }
 
 type Constants = [string, string][];
-type Loader = (variation?: string) => Constants;
-type Transformer = (consts: Constants, variation?: string) => Constants;
+type Loader = (variant?: string) => Constants;
+type Transformer = (consts: Constants, variant?: string) => Constants;
 
 function createOverrider(load: Loader, transformers: Transformer[]): Overrider {
-  return (variation?: string) => {
-    let entries = load(variation);
+  return (variant?: string) => {
+    let entries = load(variant);
     for (const f of transformers) {
       entries = f(entries);
     }
@@ -55,10 +52,10 @@ function createOverrider(load: Loader, transformers: Transformer[]): Overrider {
   };
 }
 
-const loadFromDotenv: Loader = variation => {
+const loadFromDotenv: Loader = variant => {
   const path = join(
     config.dir,
-    variation == null ? ".env" : `.env.${variation}`
+    variant == null ? ".env" : `.env.${variant}`
   );
   const cfg = dotenv.parse(config.fs.readFileSync(path)) || {};
   return Object.entries(cfg);

@@ -33,7 +33,7 @@ describe("webpack-html-powerstrip", () => {
     };
     const compiler = webpack(
       rewire(config, "production", {
-        variations: ["qa", "staging", "production"],
+        variants: ["qa", "staging", "production"],
         overrider: (v?: string): HtmlWebpackPlugin.Options => {
           const _ = v;
           return {};

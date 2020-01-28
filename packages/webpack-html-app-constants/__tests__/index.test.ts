@@ -8,7 +8,7 @@ const outputPath = join(__dirname, "..", "dist");
 
 function setup(): {
   fs: webpack.OutputFileSystem;
-  createDotenv: (variation: string, pairs: string[]) => void;
+  createDotenv: (variant: string, pairs: string[]) => void;
   expectToMatchSnapshot: (filename: string) => void;
 } {
   const vol = new Volume();
@@ -23,9 +23,9 @@ function setup(): {
   const { mkdir, mkdirp, rmdir, unlink, writeFile } = fs;
   return {
     fs: { mkdir, mkdirp, rmdir, unlink, writeFile, join },
-    createDotenv: (variation, pairs) => {
+    createDotenv: (variant, pairs) => {
       fs.writeFileSync(
-        join(globalConfig.dir, `.env.${variation}`),
+        join(globalConfig.dir, `.env.${variant}`),
         pairs.join("\n")
       );
     },
@@ -67,7 +67,7 @@ describe("webpack-html-app-constants", () => {
     };
     const compiler = webpack(
       rewire(config, "production", {
-        variations: ["qa", "staging", "production"],
+        variants: ["qa", "staging", "production"],
       }),
       (err, _) => {
         expect(err).toBeNull();
