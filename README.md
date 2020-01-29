@@ -59,13 +59,13 @@ build/index.production.html build/index.qa.html
 
 ```tsx
 // ---- src/constants.ts ----
-import { createConstantsContext } from "react-app-constants";
+import { setupContext } from "react-app-constants";
 
 export interface Constants {
   BFF_URL: string
 }
 
-const { ConstantsProvider, useConstants } = createConstantsContext<Constants>();
+const { ConstantsProvider, useConstants } = setupContext<Constants>();
 
 export { ConstantsProvider, useConstants };
 

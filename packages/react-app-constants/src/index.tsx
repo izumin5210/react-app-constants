@@ -7,7 +7,7 @@ type Context<T> = React.Context<T | null>;
 type Provider<T> = React.FC<{ value?: T; loader?: () => T }>;
 type HOC<T> = <P>(Wrapped: React.ComponentType<P & T>) => React.FC<P>;
 
-export function createConstants<T>(): {
+export function setupContext<T>(): {
   ConstantsContext: Context<T>;
   ConstantsProvider: Provider<T>;
   useConstants: () => T;
